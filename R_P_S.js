@@ -9,16 +9,6 @@ function hiddenSelect(i) {
     }
 }
 
-// function cpuChoice(cpuImages) {
-//     let ranCpu = Math.floor(Math.random() * 3);
-//     for (let i = 0; i < cpuImages.length; i++) {
-//         if (i == ranCpu) {
-//             cpuImages[i].classList.toggle("hidden");
-//             break
-//         }
-//     }
-// }
-
 const refreshFunction = () => {
     for (let i = 0; i < images.length; i++) {
         document.querySelector(".items_box > h1").innerHTML =
@@ -80,7 +70,6 @@ for (let i = 0; i < images.length; i++) {
     images[i].addEventListener("click", () => {
         hiddenSelect(i);
         itemsName(i, 'h1', '');
-        // cpuChoice(cpuImages);
         let randomCpu = Math.floor(Math.random() * 3);
         cpuImages[randomCpu].classList.remove("hidden");
         itemsName(randomCpu, 'h3', 'cpu choosed : ');
