@@ -1,6 +1,10 @@
 let images = document.querySelectorAll(".img-items");
 let cpuImages = document.querySelectorAll(".img-cpu-choosed");
 
+let totalRounds = 0;
+let currentRound = 0;
+let gameActive = false;
+
 function hiddenSelect(i) {
     for (let j = 0; j < images.length; j++) {
         if (j !== i) {
@@ -20,7 +24,7 @@ const refreshFunction = () => {
     }
 };
 
-document.querySelector("button").addEventListener("click", refreshFunction);
+document.querySelector("#refresh").addEventListener("click", refreshFunction);
 
 document.addEventListener("keydown", (e) => {
     if (e.key == "r") {
@@ -62,18 +66,69 @@ function itemsName(i, h, inner) {
     } else if (i == 1) {
         document.querySelector(`.items_box > ${h}`).innerHTML = `${inner}Rock`;
     } else {
-        document.querySelector(`.items_box > ${h}`).innerHTML = `${inner}Scissors`;
+        document.querySelector(
+            `.items_box > ${h}`
+        ).innerHTML = `${inner}Scissors`;
     }
+}
+
+function startGame() {
+    let rounds;
+    // making sure the user insert number of rounds
+    do {
+        rounds = prompt("How many rounds do you want to play?");
+    } while (!rounds || isNaN(rounds) || rounds <= 0);
+
+    totalRounds = parseInt(rounds, 10);
+    currentRound = 0;
+    document.querySelector("#user-point").innerHTML = 0;
+    document.querySelector("#cpu-point").innerHTML = 0;
+    gameActive = true;
+}
+
+function showResult(message) {
+    document.getElementById("resultText").textContent = message;
+    document.getElementById("resultBox").classList.remove("hidden");
+}
+
+function closeResult() {
+    document.getElementById("resultBox").classList.add("hidden");
+    refreshFunction(); // reset the page
+    startGame(); // start the game again
 }
 
 for (let i = 0; i < images.length; i++) {
     images[i].addEventListener("click", () => {
+        if (!gameActive) return;
+
         hiddenSelect(i);
-        itemsName(i, 'h1', '');
+        itemsName(i, "h1", "");
         let randomCpu = Math.floor(Math.random() * 3);
         cpuImages[randomCpu].classList.remove("hidden");
-        itemsName(randomCpu, 'h3', 'cpu choosed : ');
+        itemsName(randomCpu, "h3", "cpu choosed : ");
         gameLogic(i, randomCpu);
         images[i].classList.add("disabled");
+
+        currentRound++;
+
+        if (currentRound >= totalRounds) {
+            gameActive = false;
+            let userScore = Number(
+                document.querySelector("#user-point").innerHTML
+            );
+            let cpuScore = Number(
+                document.querySelector("#cpu-point").innerHTML
+            );
+
+            if (userScore > cpuScore) {
+                showResult("User win !");
+            } else if (cpuScore > userScore) {
+                showResult("CPU win !");
+            } else {
+                showResult("Draw !");
+            }
+        }
     });
 }
+
+startGame();

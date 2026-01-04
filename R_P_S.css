@@ -1,3 +1,8 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: auto auto auto;
@@ -18,15 +23,18 @@
     grid-column-start: 1;
     grid-column-end: 3;
 }
+
 .images_contain {
     display: grid;
     grid-template-columns: auto auto auto;
 }
+
 .images_contain > img {
     margin-left: auto;
     margin-right: auto;
     cursor: pointer;
 }
+
 .images_contain > img:hover {
     animation: imageRotate 0.3s;
 }
@@ -47,6 +55,7 @@
     display: grid;
     grid-template-columns: auto auto;
 }
+
 .hidden {
     display: none;
 }
@@ -74,6 +83,18 @@ button {
 
 hr {
     border: 3px solid #2196f3;
+}
+
+#resultBox {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border: 2px solid #333;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
 }
 
 @media (max-width: 480px) {
