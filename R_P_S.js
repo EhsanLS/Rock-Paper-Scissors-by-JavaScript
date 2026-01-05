@@ -45,7 +45,10 @@ const translations = {
 
 let currentLang = "fa";
 
-userName = prompt(translations[currentLang].userPrompt);
+do {
+    userName = prompt(translations[currentLang].userPrompt);
+} while (!userName || /^\d+$/.test(userName))
+
 translations["fa"].user = `${userName}:`;
 translations["en"].user = `${userName}:`;
 translations["fa"].resultWin = `تبریک میگم ${userName}، برنده شدی!`;
