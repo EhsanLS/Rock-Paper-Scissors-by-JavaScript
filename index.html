@@ -1,47 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="R_P_S.css">
-    <title>Rock, Paper, Scissors</title>
+    <title>سنگ، کاغذ، قیچی</title>
 </head>
 
 <body>
     <div class="grid-container">
         <div class="items_box">
-            <h1>Choose your weapon</h1>
+            <h1>سلاح خودت رو انتخاب کن</h1>
             <div class="images_contain">
                 <img src="images/paper.png" class="img-items" alt="">
                 <img src="images/rock.png" class="img-items" alt="">
                 <img src="images/scissors.png" class="img-items" alt="">
             </div>
             <hr>
-            <h3>cpu choosed : </h3>
+            <h3>انتخاب رایانه : </h3>
             <img src="images/paper.png" class="img-cpu-choosed hidden" alt="">
             <img src="images/rock.png" class="img-cpu-choosed hidden" alt="">
             <img src="images/scissors.png" class="img-cpu-choosed hidden" alt="">
         </div>
         <div class="result_box">
-            <h1>points:</h1>
+            <h1>امتیازها:</h1>
             <div class="result_container">
                 <div class="user-point-container">
-                    <h2>USER:</h2>
+                    <h2>کاربر:</h2>
                     <div id="user-point">0</div>
                 </div>
                 <div class="cpu-point-container">
-                    <h2>CPU:</h2>
+                    <h2>رایانه:</h2>
                     <div id="cpu-point">0</div>
                 </div>
             </div>
         </div>
-        <button id="refresh">Refresh</button>
     </div>
+    <div id="bottom">
+            <button id="refresh">راند بعد</button>
+            <div class="lang-switch">
+                <label for="langSelect">Language / زبان:</label>
+                <select id="langSelect" onchange="setLanguage(this.value)">
+                    <option value="fa">فارسی</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
+        </div>
 
     <div id="resultBox" class="hidden">
         <p id="resultText"></p>
-        <button onclick="closeResult()">Close</button>
+        <button id="closeBtn" onclick="closeResult()">بستن</button>
     </div>
 
     <script src="./R_P_S.js"></script>
